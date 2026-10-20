@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: academic-tracker
+    env: docker
+    dockerfilePath: Dockerfile
+    plan: free
+    region: oregon
+    envVars:
+      - key: PORT
+        value: 8000
+      - key: SECRET_KEY
+        generateValue: true
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: DATABASE_URL
+        fromDatabase:
+          name: academic-tracker-db
+          property: connectionString
+
+databases:
+  - name: academic-tracker-db
+    databaseName: academic_tracker
+    user: tracker_user
+    plan: free
+    region: oregon

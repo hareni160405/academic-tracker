@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4f46e5" />
+      <stop offset="50%" stop-color="#6366f1" />
+      <stop offset="100%" stop-color="#06b6d4" />
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#000000" flood-opacity="0.3" />
+    </filter>
+  </defs>
+  
+  <!-- Outer Rounded Shield / App Icon Base -->
+  <rect width="512" height="512" rx="112" fill="#0f172a" />
+  <rect x="24" y="24" width="464" height="464" rx="96" fill="url(#grad)" opacity="0.15" />
+  
+  <!-- Inner Dynamic Ring (representing Timer & Performance Progress) -->
+  <circle cx="256" cy="256" r="176" fill="none" stroke="#334155" stroke-width="20" stroke-linecap="round" />
+  <circle cx="256" cy="256" r="176" fill="none" stroke="url(#grad)" stroke-width="20" stroke-linecap="round" stroke-dasharray="800" stroke-dashoffset="240" />
+
+  <!-- Academic Graduation Cap & Brain Core -->
+  <g filter="url(#shadow)" transform="translate(256, 256)">
+    <!-- Mortarboard Cap -->
+    <path d="M 0 -70 L 120 -15 L 0 40 L -120 -15 Z" fill="url(#grad)" />
+    <!-- Cap Underneath Structure -->
+    <path d="M -70 12 L -70 65 C -70 95, 70 95, 70 65 L 70 12 Z" fill="#4338ca" />
+    <!-- Tassel -->
+    <path d="M 80 -2 L 105 45 C 105 60, 95 60, 95 45 Z" fill="#fbbf24" />
+    <circle cx="0" cy="-15" r="7" fill="#ffffff" />
+    
+    <!-- Central Stopwatch Hand / Spark of Intelligence -->
+    <polygon points="0,-10 6,25 0,20 -6,25" fill="#38bdf8" />
+  </g>
+
+  <!-- Accent Dots for Performance Indicators -->
+  <circle cx="256" cy="400" r="10" fill="#10b981" />
+</svg>
