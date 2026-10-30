@@ -3,6 +3,22 @@ import { StudySession, TimerStatus } from '../types';
 import { api } from '../services/api';
 import { useAuth } from './AuthContext';
 
+/**
+ * Safely parse a timestamp into milliseconds since epoch in UTC.
+ * Prevents timezone offset bugs (such as IST +05:30 jumping to 05:30:00 on start).
+ */
+export const parseUtcTimestamp = (val: string | Date | number | null | undefined): number => {
+  if (!val) return Date.now();
+  if (typeof val === 'number') return val;
+  if (val instanceof Date) return val.getTime();
+  const str = String(val).trim();
+  // If string has no timezone offset (+HH:MM, -HH:MM, or Z), treat as UTC by appending 'Z'
+  if (!str.endsWith('Z') && !/[+-]\d{2}:\d{2}$/.test(str)) {
+    return new Date(`${str}Z`).getTime();
+  }
+  return new Date(str).getTime();
+};
+
 interface TimerContextType {
   isActive: boolean;
   activeSession: StudySession | null;
@@ -46,7 +62,7 @@ export const TimerProvider: React.FC<{ children: React.ReactNode }> = ({ childre
       setGoalProgressPercentage(status.goal_progress_percentage);
 
       if (status.is_active && status.current_session) {
-        const start = new Date(status.current_session.start_time).getTime();
+        const start = parseUtcTimestamp(status.current_session.start_time);
         const now = Date.now();
         const diff = Math.max(0, Math.floor((now - start) / 1000));
         setElapsedSeconds(diff);
@@ -73,7 +89,7 @@ export const TimerProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   useEffect(() => {
     if (isActive && activeSession) {
       tickIntervalRef.current = window.setInterval(() => {
-        const start = new Date(activeSession.start_time).getTime();
+        const start = parseUtcTimestamp(activeSession.start_time);
         const now = Date.now();
         const diff = Math.max(0, Math.floor((now - start) / 1000));
         setElapsedSeconds(diff);

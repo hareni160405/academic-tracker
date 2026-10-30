@@ -83,28 +83,28 @@ export const SettingsPage: React.FC<SettingsPageProps> = ({ onLogout }) => {
     <div className="max-w-4xl space-y-6 pb-20 md:pb-6">
       {/* Header */}
       <div>
-        <h2 className="text-xl font-bold tracking-tight text-white md:text-2xl">
+        <h2 className="text-xl font-bold tracking-tight text-slate-800 md:text-2xl">
           Settings & Account Configurations
         </h2>
-        <p className="text-xs text-slate-400">
+        <p className="text-xs text-slate-500">
           Configure academic thresholds, local timezones for morning reminders, and account security.
         </p>
       </div>
 
       {/* Preferences Form */}
-      <div className="rounded-3xl border border-slate-800 bg-slate-900 p-6 shadow-xl">
-        <div className="border-b border-slate-800 pb-4">
-          <div className="flex items-center gap-2 text-indigo-400">
+      <div className="rounded-3xl border border-slate-200/80 bg-white p-6 shadow-sm">
+        <div className="border-b border-slate-100 pb-4">
+          <div className="flex items-center gap-2 text-emerald-600">
             <Sliders className="h-5 w-5" />
-            <h3 className="text-sm font-bold text-white">Academic Preferences</h3>
+            <h3 className="text-sm font-bold text-slate-800">Academic Preferences</h3>
           </div>
-          <p className="mt-1 text-xs text-slate-400">
+          <p className="mt-1 text-xs text-slate-500">
             Customize timer accumulation and assessment remediation thresholds.
           </p>
         </div>
 
         {prefMsg && (
-          <div className="mt-4 rounded-xl border border-emerald-500/30 bg-emerald-950/40 p-3 text-xs text-emerald-300">
+          <div className="mt-4 rounded-xl border border-emerald-200 bg-emerald-50 p-3 text-xs font-medium text-emerald-800">
             {prefMsg}
           </div>
         )}
@@ -113,14 +113,14 @@ export const SettingsPage: React.FC<SettingsPageProps> = ({ onLogout }) => {
           <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
             {/* Timezone */}
             <div>
-              <label className="mb-1 flex items-center gap-1.5 text-xs font-medium text-slate-300">
-                <Globe className="h-4 w-4 text-indigo-400" />
+              <label className="mb-1 flex items-center gap-1.5 text-xs font-semibold text-slate-700">
+                <Globe className="h-4 w-4 text-emerald-600" />
                 Local Timezone (Used for 8:00 AM reminders & midnight timer reset)
               </label>
               <select
                 value={timezone}
                 onChange={(e) => setTimezone(e.target.value)}
-                className="w-full rounded-xl border border-slate-800 bg-slate-950 px-3 py-2.5 text-xs text-white focus:border-indigo-500 focus:outline-none"
+                className="w-full rounded-xl border border-slate-200 bg-[#fbfdfc] px-3 py-2.5 text-xs text-slate-800 focus:border-emerald-500 focus:bg-white focus:outline-none"
               >
                 <option value="Asia/Kolkata">Asia/Kolkata (IST - UTC+05:30)</option>
                 <option value="America/New_York">America/New_York (EST - UTC-05:00)</option>
@@ -135,9 +135,9 @@ export const SettingsPage: React.FC<SettingsPageProps> = ({ onLogout }) => {
 
             {/* Daily Study Goal */}
             <div>
-              <label className="mb-1 flex items-center justify-between text-xs font-medium text-slate-300">
+              <label className="mb-1 flex items-center justify-between text-xs font-semibold text-slate-700">
                 <span>Daily Target Study Time</span>
-                <span className="font-mono text-indigo-400 font-bold">{dailyGoalMinutes} mins ({(dailyGoalMinutes / 60).toFixed(1)} hrs)</span>
+                <span className="font-mono text-emerald-700 font-bold">{dailyGoalMinutes} mins ({(dailyGoalMinutes / 60).toFixed(1)} hrs)</span>
               </label>
               <input
                 type="range"
@@ -146,15 +146,15 @@ export const SettingsPage: React.FC<SettingsPageProps> = ({ onLogout }) => {
                 step="15"
                 value={dailyGoalMinutes}
                 onChange={(e) => setDailyGoalMinutes(Number(e.target.value))}
-                className="mt-2 w-full accent-indigo-500"
+                className="mt-2 w-full accent-emerald-600"
               />
             </div>
 
             {/* Assessment Passing Threshold */}
             <div className="md:col-span-2">
-              <label className="mb-1 flex items-center justify-between text-xs font-medium text-slate-300">
+              <label className="mb-1 flex items-center justify-between text-xs font-semibold text-slate-700">
                 <span>Assessment Passing & Weak-Topic Threshold</span>
-                <span className="font-mono text-indigo-400 font-bold">{passingThreshold}%</span>
+                <span className="font-mono text-emerald-700 font-bold">{passingThreshold}%</span>
               </label>
               <input
                 type="range"
@@ -163,7 +163,7 @@ export const SettingsPage: React.FC<SettingsPageProps> = ({ onLogout }) => {
                 step="5"
                 value={passingThreshold}
                 onChange={(e) => setPassingThreshold(Number(e.target.value))}
-                className="mt-2 w-full accent-indigo-500"
+                className="mt-2 w-full accent-emerald-600"
               />
               <p className="mt-1 text-[11px] text-slate-500">
                 Scores below this threshold automatically trigger weak-topic tagging and 3-step AI revision suggestions.
@@ -175,7 +175,7 @@ export const SettingsPage: React.FC<SettingsPageProps> = ({ onLogout }) => {
             <button
               type="submit"
               disabled={prefLoading}
-              className="rounded-xl bg-indigo-600 px-6 py-2.5 text-xs font-bold text-white hover:bg-indigo-500 disabled:opacity-50"
+              className="rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 px-6 py-2.5 text-xs font-bold text-white shadow-md shadow-emerald-600/20 hover:from-emerald-700 hover:to-teal-700 disabled:opacity-50"
             >
               {prefLoading ? 'Saving...' : 'Save Academic Preferences'}
             </button>
@@ -184,23 +184,23 @@ export const SettingsPage: React.FC<SettingsPageProps> = ({ onLogout }) => {
       </div>
 
       {/* Security & Password Change */}
-      <div className="rounded-3xl border border-slate-800 bg-slate-900 p-6 shadow-xl">
-        <div className="border-b border-slate-800 pb-4">
-          <div className="flex items-center gap-2 text-indigo-400">
+      <div className="rounded-3xl border border-slate-200/80 bg-white p-6 shadow-sm">
+        <div className="border-b border-slate-100 pb-4">
+          <div className="flex items-center gap-2 text-emerald-600">
             <Lock className="h-5 w-5" />
-            <h3 className="text-sm font-bold text-white">Security & Password</h3>
+            <h3 className="text-sm font-bold text-slate-800">Security & Password</h3>
           </div>
-          <p className="mt-1 text-xs text-slate-400">
+          <p className="mt-1 text-xs text-slate-500">
             Keep your account secure with an updated password.
           </p>
         </div>
 
         {pwdMsg && (
           <div
-            className={`mt-4 rounded-xl p-3 text-xs ${
+            className={`mt-4 rounded-xl p-3 text-xs font-medium ${
               pwdMsg.type === 'success'
-                ? 'border border-emerald-500/30 bg-emerald-950/40 text-emerald-300'
-                : 'border border-rose-500/30 bg-rose-950/40 text-rose-300'
+                ? 'border border-emerald-200 bg-emerald-50 text-emerald-800'
+                : 'border border-rose-200 bg-rose-50 text-rose-800'
             }`}
           >
             {pwdMsg.text}
@@ -210,26 +210,26 @@ export const SettingsPage: React.FC<SettingsPageProps> = ({ onLogout }) => {
         <form onSubmit={handleChangePassword} className="mt-6 space-y-4">
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
             <div>
-              <label className="mb-1 block text-xs font-medium text-slate-300">Current Password</label>
+              <label className="mb-1 block text-xs font-semibold text-slate-700">Current Password</label>
               <input
                 type="password"
                 required
                 value={oldPassword}
                 onChange={(e) => setOldPassword(e.target.value)}
                 placeholder="••••••••"
-                className="w-full rounded-xl border border-slate-800 bg-slate-950 px-3 py-2.5 text-xs text-white focus:border-indigo-500 focus:outline-none"
+                className="w-full rounded-xl border border-slate-200 bg-[#fbfdfc] px-3 py-2.5 text-xs text-slate-800 focus:border-emerald-500 focus:bg-white focus:outline-none"
               />
             </div>
 
             <div>
-              <label className="mb-1 block text-xs font-medium text-slate-300">New Password</label>
+              <label className="mb-1 block text-xs font-semibold text-slate-700">New Password</label>
               <input
                 type="password"
                 required
                 value={newPassword}
                 onChange={(e) => setNewPassword(e.target.value)}
                 placeholder="At least 6 characters"
-                className="w-full rounded-xl border border-slate-800 bg-slate-950 px-3 py-2.5 text-xs text-white focus:border-indigo-500 focus:outline-none"
+                className="w-full rounded-xl border border-slate-200 bg-[#fbfdfc] px-3 py-2.5 text-xs text-slate-800 focus:border-emerald-500 focus:bg-white focus:outline-none"
               />
             </div>
           </div>
@@ -238,7 +238,7 @@ export const SettingsPage: React.FC<SettingsPageProps> = ({ onLogout }) => {
             <button
               type="submit"
               disabled={pwdLoading}
-              className="rounded-xl bg-slate-800 px-6 py-2.5 text-xs font-bold text-slate-200 hover:bg-slate-700 disabled:opacity-50"
+              className="rounded-xl bg-slate-800 px-6 py-2.5 text-xs font-bold text-white hover:bg-slate-700 disabled:opacity-50"
             >
               {pwdLoading ? 'Updating...' : 'Update Password'}
             </button>
@@ -247,17 +247,17 @@ export const SettingsPage: React.FC<SettingsPageProps> = ({ onLogout }) => {
       </div>
 
       {/* Danger Zone / Logout */}
-      <div className="rounded-3xl border border-rose-500/30 bg-rose-950/15 p-6 shadow-xl">
-        <div className="flex items-center justify-between">
+      <div className="rounded-3xl border border-rose-200/80 bg-rose-50/60 p-6 shadow-sm">
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <h3 className="text-sm font-bold text-white">Log Out of Student Session</h3>
-            <p className="mt-1 text-xs text-slate-400">
+            <h3 className="text-sm font-bold text-rose-900">Log Out of Student Session</h3>
+            <p className="mt-1 text-xs text-rose-700">
               Sign out on this device. All your saved tasks, study logs, and quiz results remain securely stored.
             </p>
           </div>
           <button
             onClick={handleConfirmLogout}
-            className="flex items-center gap-2 rounded-xl bg-rose-600 px-5 py-2.5 text-xs font-bold text-white shadow-lg shadow-rose-600/30 hover:bg-rose-500"
+            className="flex items-center justify-center gap-2 rounded-xl bg-rose-600 px-5 py-2.5 text-xs font-bold text-white shadow-md shadow-rose-600/20 hover:bg-rose-500 transition-colors"
           >
             <LogOut className="h-4 w-4" />
             <span>Sign Out</span>

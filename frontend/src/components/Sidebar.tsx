@@ -49,16 +49,16 @@ export const Sidebar: React.FC<SidebarProps> = ({
   return (
     <>
       {/* Desktop Sidebar */}
-      <aside className="hidden h-full w-64 flex-col justify-between border-r border-slate-800 bg-slate-950 p-4 md:flex">
+      <aside className="hidden h-full w-64 flex-col justify-between border-r border-emerald-100/90 bg-white/85 p-4 backdrop-blur-md md:flex">
         <div className="space-y-6">
           {/* Brand Logo & Title */}
           <div className="flex items-center gap-3 px-2">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-tr from-indigo-600 via-indigo-500 to-cyan-400 text-white shadow-lg shadow-indigo-500/20">
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-tr from-emerald-500 via-teal-500 to-sky-500 text-white shadow-md shadow-emerald-500/20">
               <BookOpen className="h-5 w-5" />
             </div>
             <div>
-              <div className="font-bold tracking-tight text-white">Academic Tracker</div>
-              <div className="text-[11px] font-medium text-indigo-400">Student Portal</div>
+              <div className="font-bold tracking-tight text-slate-900">Academic Tracker</div>
+              <div className="text-[11px] font-semibold text-emerald-700">Student Portal</div>
             </div>
           </div>
 
@@ -71,13 +71,13 @@ export const Sidebar: React.FC<SidebarProps> = ({
                 <button
                   key={item.id}
                   onClick={() => handleNavClick(item.id)}
-                  className={`flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-all ${
+                  className={`flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-all ${
                     isActive
-                      ? 'bg-indigo-600/15 text-indigo-400 border border-indigo-500/30 shadow-sm'
-                      : 'text-slate-400 hover:bg-slate-900 hover:text-slate-200'
+                      ? 'bg-gradient-to-r from-emerald-100/80 to-sky-100/80 text-emerald-900 border border-emerald-200/80 shadow-xs font-semibold'
+                      : 'text-slate-600 hover:bg-emerald-50/70 hover:text-slate-900'
                   }`}
                 >
-                  <Icon className={`h-4 w-4 ${isActive ? 'text-indigo-400' : 'text-slate-400'}`} />
+                  <Icon className={`h-4 w-4 ${isActive ? 'text-emerald-700' : 'text-slate-500'}`} />
                   <span>{item.label}</span>
                 </button>
               );
@@ -86,10 +86,10 @@ export const Sidebar: React.FC<SidebarProps> = ({
         </div>
 
         {/* Logout Button */}
-        <div className="border-t border-slate-800 pt-3">
+        <div className="border-t border-slate-200/80 pt-3">
           <button
             onClick={onLogout}
-            className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-rose-400 transition-colors hover:bg-rose-950/30 hover:text-rose-300"
+            className="flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-rose-600 transition-colors hover:bg-rose-50 hover:text-rose-700"
           >
             <LogOut className="h-4 w-4" />
             <span>Logout</span>
@@ -100,31 +100,31 @@ export const Sidebar: React.FC<SidebarProps> = ({
       {/* Mobile Slide-Out Drawer Backdrop */}
       {mobileMenuOpen && (
         <div
-          className="fixed inset-0 z-40 bg-black/70 backdrop-blur-sm md:hidden"
+          className="fixed inset-0 z-40 bg-slate-900/40 backdrop-blur-xs md:hidden"
           onClick={() => setMobileMenuOpen(false)}
         />
       )}
 
       {/* Mobile Slide-Out Drawer */}
       <aside
-        className={`fixed inset-y-0 left-0 z-50 flex w-72 flex-col justify-between border-r border-slate-800 bg-slate-950 p-5 transition-transform duration-300 ease-in-out md:hidden ${
+        className={`fixed inset-y-0 left-0 z-50 flex w-72 flex-col justify-between border-r border-emerald-100 bg-[#f7fcf9] p-5 shadow-2xl transition-transform duration-300 ease-in-out md:hidden ${
           mobileMenuOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
       >
         <div className="space-y-6">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-tr from-indigo-600 to-cyan-400 text-white">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-tr from-emerald-500 to-sky-500 text-white">
                 <BookOpen className="h-5 w-5" />
               </div>
               <div>
-                <div className="font-bold text-white">Academic Tracker</div>
-                <div className="text-[11px] text-indigo-400">Mobile Edition</div>
+                <div className="font-bold text-slate-900">Academic Tracker</div>
+                <div className="text-[11px] font-semibold text-emerald-700">Mobile Edition</div>
               </div>
             </div>
             <button
               onClick={() => setMobileMenuOpen(false)}
-              className="rounded-lg p-2 text-slate-400 hover:bg-slate-900 hover:text-white"
+              className="rounded-lg p-2 text-slate-500 hover:bg-slate-100 hover:text-slate-800"
             >
               <X className="h-5 w-5" />
             </button>
@@ -138,13 +138,13 @@ export const Sidebar: React.FC<SidebarProps> = ({
                 <button
                   key={item.id}
                   onClick={() => handleNavClick(item.id)}
-                  className={`flex w-full items-center gap-3 rounded-lg px-3 py-3 text-sm font-medium transition-colors ${
+                  className={`flex w-full items-center gap-3 rounded-xl px-3 py-3 text-sm font-medium transition-colors ${
                     isActive
-                      ? 'bg-indigo-600/20 text-indigo-400 border border-indigo-500/30'
-                      : 'text-slate-400 hover:bg-slate-900 hover:text-slate-200'
+                      ? 'bg-gradient-to-r from-emerald-100/90 to-sky-100/90 text-emerald-900 border border-emerald-200 font-semibold'
+                      : 'text-slate-600 hover:bg-emerald-50/70 hover:text-slate-900'
                   }`}
                 >
-                  <Icon className="h-4 w-4" />
+                  <Icon className={`h-4 w-4 ${isActive ? 'text-emerald-700' : 'text-slate-500'}`} />
                   <span>{item.label}</span>
                 </button>
               );
@@ -152,10 +152,10 @@ export const Sidebar: React.FC<SidebarProps> = ({
           </nav>
         </div>
 
-        <div className="border-t border-slate-800 pt-4">
+        <div className="border-t border-slate-200/80 pt-4">
           <button
             onClick={onLogout}
-            className="flex w-full items-center gap-3 rounded-lg px-3 py-3 text-sm font-medium text-rose-400 hover:bg-rose-950/30"
+            className="flex w-full items-center gap-3 rounded-xl px-3 py-3 text-sm font-medium text-rose-600 hover:bg-rose-50 hover:text-rose-700"
           >
             <LogOut className="h-4 w-4" />
             <span>Logout</span>
@@ -164,7 +164,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
       </aside>
 
       {/* Mobile Bottom Navigation Bar (Quick Access on Android phones) */}
-      <nav className="fixed bottom-0 left-0 right-0 z-30 flex h-16 items-center justify-around border-t border-slate-800 bg-slate-950/95 px-2 backdrop-blur-lg md:hidden">
+      <nav className="fixed bottom-0 left-0 right-0 z-30 flex h-16 items-center justify-around border-t border-emerald-100/90 bg-white/95 px-2 backdrop-blur-lg md:hidden">
         {[
           { id: 'dashboard', label: 'Home', icon: LayoutDashboard },
           { id: 'timer', label: 'Study', icon: Clock },
@@ -179,7 +179,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
               key={item.id}
               onClick={() => setActiveTab(item.id)}
               className={`flex flex-col items-center justify-center gap-1 rounded-lg px-3 py-1 text-[11px] font-medium transition-colors ${
-                isActive ? 'text-indigo-400' : 'text-slate-500 hover:text-slate-300'
+                isActive ? 'text-emerald-700 font-semibold' : 'text-slate-500 hover:text-slate-700'
               }`}
             >
               <Icon className="h-5 w-5" />
